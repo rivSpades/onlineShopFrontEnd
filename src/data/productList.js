@@ -1,26 +1,66 @@
-export const productListData =[
-  {
-    id: 1,
-    tag: "-16%",
-    product_img: [
-      { id: 1, img: "/assets/img/home1/product-img-4.png" },
-      { id: 2, img: "/assets/img/home1/product-img-7.png" },
-    ],
-    offer_timer:"",
-    product_title:"Botanical Hair Shampoo",
-    product_brand:"RADIANT VIBE",
-    regular_price:"200.00",
-    offer_pirce:"150.00",
-    rating:"50",
-    out_of_stock:true,
-    request_stock:true,
-    rating:5,
-    rating_number:50,
-    product_size:[
-      {id:1,size:150},
-      {id:2,size:250},
-      {id:3,size:350},
-    ]
-  },
-];
-export default {productListData}
+// src/data/products/fetchProducts.js
+
+export const fetchProducts = async (filters = {}) => {
+  try {
+    // Construct the query string from the filters object
+    const queryParams = new URLSearchParams(filters).toString();
+    const url = `http://localhost:8000/store/products/${
+      queryParams ? `?${queryParams}` : ''
+    }`;
+
+    const response = await fetch(url); // Your products API URL with filters
+    console.log(response);
+
+    // Check if the response is okay (status 200-299)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    // Parse the JSON data from the response
+    const data = await response.json();
+    return data; // Return the fetched product data
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return { count: 0, results: [] }; // Return a default structure on error
+  }
+};
+
+export const fetchProductDetail = async (slug) => {
+  try {
+    const url = `http://localhost:8000/store/products/${slug}/`;
+    const response = await fetch(url);
+
+    // Check if the response is okay (status 200-299)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    // Parse the JSON data from the response
+    const data = await response.json();
+    console.log(data);
+    return data; // Return the fetched product data
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    return null; // Return null to indicate failure
+  }
+};
+
+export const fetchProductSearch = async (keyword) => {
+  try {
+    const url = `http://localhost:8000/store/search?${keyword}/`;
+    const response = await fetch(url);
+
+    // Check if the response is okay (status 200-299)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    // Parse the JSON data from the response
+    const data = await response.json();
+    console.log(data);
+    return data; // Return the fetched product data
+  } catch (error) {
+    console.error('No products found', error);
+    return null; // Return null to indicate failure
+  }
+};

@@ -1,9 +1,18 @@
-import useCustomSelect from "@/src/hooks/useCustomSelect";
-import React, { useEffect, useRef } from "react";
-const SelectComponent = ({ options, placeholder, open, customClass }) => {
+// SelectComponent.js
+import useCustomSelect from '@/src/hooks/useCustomSelect';
+import React, { useEffect, useRef } from 'react';
+
+const SelectComponent = ({
+  options,
+  placeholder,
+  open,
+  customClass,
+  onSelect,
+  selectedOption,
+}) => {
   const {
     isOpen,
-    selectedOption,
+
     openDropdown,
     closeDropdown,
     toggleDropdown,
@@ -14,27 +23,29 @@ const SelectComponent = ({ options, placeholder, open, customClass }) => {
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      // Click is outside the dropdown, close the dropdown
       closeDropdown();
     }
   };
 
   useEffect(() => {
     if (isOpen) {
-      // Add event listener when the component mounts
-      document.addEventListener("click", handleClickOutside);
+      document.addEventListener('click', handleClickOutside);
     }
-
-    // Remove event listener when the component unmounts
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, [isOpen]);
 
-  const dropdownClassName = `nice-select ${customClass || ""} ${
-    isOpen ? "open" : ""
-  }`;
+  const handleSelectOption = (option) => {
+    selectOption(option);
+    openDropdown();
+    onSelect(option); // Notify parent of selection
+  };
 
+  const dropdownClassName = `nice-select ${customClass || ''} ${
+    isOpen ? 'open' : ''
+  }`;
+  console.log(selectedOption);
   return (
     <div
       className={dropdownClassName}
@@ -48,13 +59,10 @@ const SelectComponent = ({ options, placeholder, open, customClass }) => {
           <li
             key={index}
             className={`option${
-              selectedOption === option ? " selected focus" : ""
+              selectedOption === option ? ' selected focus' : ''
             }`}
             data-value={index}
-            onClick={() => {
-              selectOption(option);
-              openDropdown(); // Open the next dropdown
-            }}
+            onClick={() => handleSelectOption(option)}
           >
             {option}
           </li>
