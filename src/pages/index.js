@@ -2,20 +2,11 @@ import Head from 'next/head';
 import Banner from '../components/banner/Banner';
 import ChooseProduct from '../components/Home/ChooseProduct';
 import BestSellingProduct from '../components/Home/BestSellingProduct';
-import JustForSection from '../components/Home/JustForSection';
-import OfferBanner from '../components/Home/OfferBanner';
 import NewestProduct from '../components/Home/NewestProduct';
-import ExclusiveProduct from '../components/Home/ExclusiveProduct';
-import SpecialOffer from '../components/Home/SpecialOffer';
-import BestBrand from '../components/Home/BestBrand';
-import MakeupSection from '../components/Home/MakeupSection';
-import Testimonial from '../components/Home/Testimonial';
-import Newsletters from '../components/Home/Newsletter';
 import InstagramSection from '../components/Home/InstagramSection';
-import PromoModal from '../components/common/PromoModal';
-import Banner2 from '../components/banner/Banner2';
+import { fetchBanners } from '../data/bannerData';
 
-export default function Home() {
+export default function Home({ banners }) {
   return (
     <>
       <Head>
@@ -25,13 +16,29 @@ export default function Home() {
         <link rel="icon" href="/assets/img/sm-logo.svg" />
       </Head>
 
-      <Banner />
+      <Banner banners={banners} />
       <ChooseProduct />
       <BestSellingProduct />
-
       <NewestProduct />
-
       <InstagramSection />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const banners = await fetchBanners();
+    return {
+      props: {
+        banners: Array.isArray(banners) ? banners : [],
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching banners:', error);
+    return {
+      props: {
+        banners: [], // Return an empty array in case of error
+      },
+    };
+  }
 }

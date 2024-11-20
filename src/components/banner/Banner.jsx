@@ -1,6 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { fetchBanners } from '../../data/bannerData';
 import SwiperCore, {
   Autoplay,
   EffectFade,
@@ -10,43 +9,21 @@ import SwiperCore, {
 import { Swiper, SwiperSlide } from 'swiper/react';
 SwiperCore.use([Pagination, Autoplay, EffectFade, Navigation]);
 
-const Banner = () => {
-  const [banners, setBanners] = useState([]);
-
-  const bannerSlideSetting = useMemo(
-    () => ({
-      slidesPerView: 'auto',
-      speed: 1500,
-      loop: true,
-      autoplay: true,
-      effect: 'fade',
-      fadeEffect: {
-        crossFade: true,
-      },
-      pagination: {
-        el: '.swiper-pagination1',
-        clickable: true,
-      },
-    }),
-    []
-  );
-
-  useEffect(() => {
-    const loadBanners = async () => {
-      try {
-        const data = await fetchBanners();
-        console.log('Fetched banners:', data); // Log the fetched data
-        if (Array.isArray(data)) {
-          setBanners(data);
-        } else {
-          console.error('Expected an array but got:', data);
-        }
-      } catch (error) {
-        console.error('Error fetching banners:', error);
-      }
-    };
-    loadBanners();
-  }, []);
+const Banner = ({ banners }) => {
+  const bannerSlideSetting = {
+    slidesPerView: 'auto',
+    speed: 1500,
+    loop: true,
+    autoplay: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
+    },
+    pagination: {
+      el: '.swiper-pagination1',
+      clickable: true,
+    },
+  };
 
   return (
     <div className="banner-section mb-110">

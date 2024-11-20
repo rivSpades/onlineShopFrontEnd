@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import CostSummary from '@/src/layout/CostSummary';
 import CartSummary from '@/src/layout/CartSummary';
 import { fetchOrderDetails } from '@/src/data/orders'; // Assuming this function exists
