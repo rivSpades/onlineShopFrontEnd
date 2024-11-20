@@ -108,7 +108,7 @@ export const validateToken = async () => {
 };
 
 // Utility function to get cookie by name
-const getCookie = (name) => {
+export const getCookie = (name) => {
   if (typeof document !== 'undefined') {
     // Check if running in a browser environment
     const value = `; ${document.cookie}`;

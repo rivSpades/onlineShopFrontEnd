@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useMagneticHover from '@/src/hooks/useMagneticHover';
 import QuantityCounter from '@/src/uitils/QuantityCounter';
 import { addToCart } from '@/src/data/cart';
 import { fetchProductDetail } from '@/src/data/productList';
+import { useCart } from '@/src/store/cartcontext';
 const ProductDefaultPage = ({ product, error }) => {
   const [selectedVariations, setSelectedVariations] = useState({});
   const [quantity, setQuantity] = useState(1); // Default quantity to 1
   useMagneticHover();
-
+  const { addToCart, refetchCartItems } = useCart();
   const handleVariationChange = (type, value) => {
     // Check if the currently selected value is the same as the one clicked
     const currentlySelected = selectedVariations[type];
@@ -20,20 +21,9 @@ const ProductDefaultPage = ({ product, error }) => {
     }));
   };
   const handleAddToCart = async () => {
-    try {
-      const response = await addToCart(
-        product.id,
-        quantity,
-        selectedVariations
-      ); // Correctly pass the arguments
-      if (response.success) {
-        console.log('Item added to cart:', response.data);
-      } else {
-        console.error('Failed to add item to cart:', response.message);
-      }
-    } catch (error) {
-      console.error('Error adding item to cart:', error);
-    }
+    await addToCart(product.id, quantity, selectedVariations);
+    setQuantity(1);
+    setSelectedVariations({});
   };
 
   if (error) return <p>{error}</p>;
@@ -104,7 +94,7 @@ const ProductDefaultPage = ({ product, error }) => {
                 </div>
                 <div className="quantity-color-area">
                   <div className="quantity-color">
-                    <h6 className="widget-title">Quantity</h6>
+                    <h6 className="widget-title text-center">Quantity</h6>
                     <QuantityCounter
                       quantity={quantity}
                       setQuantity={setQuantity}

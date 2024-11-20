@@ -1,12 +1,11 @@
 // CartItem.js
 import React from 'react';
 
-const CartItem = ({ item, onRemove, onQuantityChange }) => {
-  const handleQuantityChange = (event) => {
-    const newQuantity = event.target.value;
-    onQuantityChange(item.id, newQuantity);
-  };
-
+const CartItem = ({ item, onRemove, onAdd }) => {
+  const variationDetails =
+    item.variation.length > 0
+      ? { [item.variation[0].name]: item.variation[0].value }
+      : {};
   return (
     <li className="single-item">
       <div className="item-area">
@@ -22,7 +21,10 @@ const CartItem = ({ item, onRemove, onQuantityChange }) => {
               <span>
                 {item.price} <del>${item.originalPrice}</del>
               </span>
-              <button className="close-btn" onClick={() => onRemove(item.id)}>
+              <button
+                className="close-btn"
+                onClick={() => onRemove(item.product_id, item.id, true)}
+              >
                 <i className="bi bi-trash" />
               </button>
             </div>
@@ -39,7 +41,13 @@ const CartItem = ({ item, onRemove, onQuantityChange }) => {
             <div className="quantity">
               <a
                 className="quantity__minus"
-                onClick={() => onQuantityChange(item.id, item.quantity - 1)}
+                onClick={() => {
+                  if (item.quantity > 1) {
+                    onRemove(item.product_id, item.id, false);
+                  } else {
+                    onRemove(item.product_id, item.id, true);
+                  }
+                }}
               >
                 <span>
                   <i className="bi bi-dash" />
@@ -50,11 +58,13 @@ const CartItem = ({ item, onRemove, onQuantityChange }) => {
                 type="text"
                 className="quantity__input"
                 value={item.quantity}
-                onChange={handleQuantityChange}
+                readOnly={true}
               />
               <a
+                onClick={() => {
+                  onAdd(item.product_id, 1, variationDetails);
+                }}
                 className="quantity__plus"
-                onClick={() => onQuantityChange(item.id, item.quantity + 1)}
               >
                 <span>
                   <i className="bi bi-plus" />

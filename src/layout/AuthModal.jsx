@@ -32,6 +32,7 @@ const AuthModal = () => {
 
       // Programmatically click the hidden close button to dismiss the modal
       document.getElementById('close-modal-button').click();
+      window.location.reload('/');
     } else {
       console.log(response);
       alert('Login failed: ' + (response.error || 'Invalid credentials'));

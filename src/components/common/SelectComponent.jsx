@@ -1,4 +1,3 @@
-// SelectComponent.js
 import useCustomSelect from '@/src/hooks/useCustomSelect';
 import React, { useEffect, useRef } from 'react';
 
@@ -9,17 +8,13 @@ const SelectComponent = ({
   customClass,
   onSelect,
   selectedOption,
+  required,
 }) => {
-  const {
-    isOpen,
-
-    openDropdown,
-    closeDropdown,
-    toggleDropdown,
-    selectOption,
-  } = useCustomSelect(options, open);
+  const { isOpen, openDropdown, closeDropdown, toggleDropdown, selectOption } =
+    useCustomSelect(options, open);
 
   const dropdownRef = useRef(null);
+  const selectRef = useRef(null); // Reference to the native select element
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -38,14 +33,17 @@ const SelectComponent = ({
 
   const handleSelectOption = (option) => {
     selectOption(option);
-    openDropdown();
     onSelect(option); // Notify parent of selection
+    closeDropdown();
+
+    // Update the hidden native select element
+    selectRef.current.value = option;
   };
 
   const dropdownClassName = `nice-select ${customClass || ''} ${
     isOpen ? 'open' : ''
   }`;
-  console.log(selectedOption);
+
   return (
     <div
       className={dropdownClassName}
@@ -68,6 +66,30 @@ const SelectComponent = ({
           </li>
         ))}
       </ul>
+
+      {/* Hidden native select to trigger required validation */}
+      <select
+        ref={selectRef}
+        value={selectedOption || ''}
+        onChange={() => {}} // No need for onChange
+        required={required}
+        style={{
+          position: 'absolute',
+          opacity: 0,
+          pointerEvents: 'none',
+          height: 0,
+          width: 0,
+        }}
+      >
+        <option value="" disabled>
+          {placeholder}
+        </option>
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
