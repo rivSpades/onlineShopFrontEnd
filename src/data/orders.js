@@ -1,10 +1,14 @@
 import { getCookie } from './auth';
-const urlBase = 'http://localhost:8000/orders'; // Update with your backend URL
+
+// Use environment variable for the base URL, defaulting to localhost if not set
+const urlBase = `${process.env.NEXT_PUBLIC_API_URL}/orders`;
+
 const accessToken = getCookie('access_token');
 const headers = {
   'Content-Type': 'application/json',
   ...(accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {}), // Conditionally add the Authorization header
 };
+
 export async function placeOrder(orderData) {
   try {
     const response = await fetch(`${urlBase}/place_order`, {

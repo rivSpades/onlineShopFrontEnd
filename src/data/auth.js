@@ -1,5 +1,5 @@
 // Base URL for the API
-const API_URL = 'http://localhost:8000/accounts'; // Change this according to your backend URL
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/accounts`; // Use environment variable for the base URL
 
 // Register function
 export const register = async (
@@ -127,5 +127,3 @@ export const getCookie = (name) => {
   }
   return null;
 };
-
-// Example usage

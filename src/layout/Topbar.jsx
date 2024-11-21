@@ -30,18 +30,16 @@ const Topbar = () => {
               </Link>
             </div>
             <div className="search-area">
-              <form onSubmit={handleSearchSubmit}>
-                <div className="form-inner">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)} // Update search term
-                  />
-                  <button type="submit">
-                    <i className="bx bx-search" style={{ color: 'white' }} />
-                  </button>
-                </div>
+              <form className="form-inner" onSubmit={handleSearchSubmit}>
+                <input
+                  type="text"
+                  placeholder="Search for Category, Product or Description"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)} // Update search term
+                />
+                <button type="submit">
+                  <i className="bx bx-search" style={{ color: 'white' }} />
+                </button>
               </form>
             </div>
           </div>

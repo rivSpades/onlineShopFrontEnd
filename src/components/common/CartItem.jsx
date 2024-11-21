@@ -1,17 +1,20 @@
-// CartItem.js
 import React from 'react';
 
 const CartItem = ({ item, onRemove, onAdd }) => {
+  // Use the environment variable for the backend URL
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const variationDetails =
     item.variation.length > 0
       ? { [item.variation[0].name]: item.variation[0].value }
       : {};
+
   return (
     <li className="single-item">
       <div className="item-area">
         <div className="item-img ">
           <img
-            src={'http://localhost:8000' + item.images[0].image}
+            src={`${apiBaseUrl}${item.images[0].image}`}
             alt={item.product_name}
           />
         </div>

@@ -7,9 +7,13 @@ import SwiperCore, {
   Pagination,
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 SwiperCore.use([Pagination, Autoplay, EffectFade, Navigation]);
 
 const Banner = ({ banners }) => {
+  // Use environment variable for backend URL
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const bannerSlideSetting = {
     slidesPerView: 'auto',
     speed: 1500,
@@ -59,7 +63,7 @@ const Banner = ({ banners }) => {
                               <p>{description}</p>
                               <Link legacyBehavior href="/shop">
                                 <a className="primary-btn1 hover-btn3">
-                                  *Shop Now*
+                                  Shop Now
                                 </a>
                               </Link>
                             </div>
@@ -67,8 +71,8 @@ const Banner = ({ banners }) => {
                           <div className="banner-right-wrapper">
                             <div className="banner-right-img">
                               <img
-                                src={'http://localhost:8000' + banner_img}
-                                alt=""
+                                src={`${apiBaseUrl}${banner_img}`}
+                                alt={title}
                                 className="banner-right-bg"
                               />
                             </div>

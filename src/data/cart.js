@@ -1,18 +1,19 @@
 import { getCookie } from './auth';
 
-const urlBase = 'http://localhost:8000/cart'; // Update with your backend URL
+// Use the environment variable for the base URL
+const urlBase = `${process.env.NEXT_PUBLIC_API_URL}/cart`; // Ensure the variable is prefixed with NEXT_PUBLIC_
 const accessToken = getCookie('access_token');
+
 const headers = {
   'Content-Type': 'application/json',
   ...(accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {}), // Conditionally add the Authorization header
 };
 
 export const addToCart = async (productId, quantity, variations) => {
-  // Use variations for clarity
   const url = `${urlBase}/add_cart/${productId}/`; // Adjust the endpoint accordingly
 
   const requestBody = {
-    variations, // Use variations here
+    variations,
     quantity,
   };
 
@@ -37,10 +38,10 @@ export const addToCart = async (productId, quantity, variations) => {
 };
 
 export const fetchCartItems = async () => {
-  const url = urlBase; // The endpoint for retrieving cart items
+  const url = `${urlBase}/`; // The endpoint for retrieving cart items
 
   try {
-    const response = await fetch(url + '/', {
+    const response = await fetch(url, {
       method: 'GET',
       headers: headers,
       credentials: 'include',
@@ -66,7 +67,7 @@ export const removeFromCart = async (
   const url = `${urlBase}/remove_cart/${productId}/${cartItemId}/`;
 
   try {
-    const response = await fetch(url + `?remove_item=${removeItem}`, {
+    const response = await fetch(`${url}?remove_item=${removeItem}`, {
       method: 'DELETE',
       headers: headers,
       credentials: 'include',

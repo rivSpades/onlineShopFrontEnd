@@ -1,12 +1,16 @@
 import React from 'react';
 import { useCart } from '../store/cartcontext';
 
+// Get the base URL from environment variables
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 function CartSummary({ data }) {
   const { cartItems } = useCart();
 
   // Use props data if available, otherwise fallback to cartItems from the hook
   const items = data ? data.cartItems : cartItems;
   console.log(items);
+
   return (
     <div className="added-product-summary mb-30">
       <h5>Cart Summary</h5>
@@ -17,8 +21,9 @@ function CartSummary({ data }) {
               <div className="product-img">
                 <img
                   src={
-                    'http://localhost:8000' + item.images[0]?.image ||
-                    '/assets/img/default-image.png'
+                    item.images[0]?.image
+                      ? `${apiBaseUrl}${item.images[0]?.image}` // Use dynamic base URL
+                      : '/assets/img/default-image.png'
                   }
                   alt={item.product_name}
                 />

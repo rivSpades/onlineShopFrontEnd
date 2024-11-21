@@ -1,10 +1,13 @@
 // src/data/products/fetchProducts.js
 
+// Get the base URL from environment variable or default to localhost
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export const fetchProducts = async (filters = {}) => {
   try {
     // Construct the query string from the filters object
     const queryParams = new URLSearchParams(filters).toString();
-    const url = `http://localhost:8000/store/products/${
+    const url = `${apiBaseUrl}/store/products/${
       queryParams ? `?${queryParams}` : ''
     }`;
 
@@ -27,7 +30,7 @@ export const fetchProducts = async (filters = {}) => {
 
 export const fetchProductDetail = async (slug) => {
   try {
-    const url = `http://localhost:8000/store/products/${slug}/`;
+    const url = `${apiBaseUrl}/store/products/${slug}/`;
     const response = await fetch(url);
 
     // Check if the response is okay (status 200-299)
@@ -47,7 +50,7 @@ export const fetchProductDetail = async (slug) => {
 
 export const fetchProductSearch = async (keyword) => {
   try {
-    const url = `http://localhost:8000/store/search?${keyword}/`;
+    const url = `${apiBaseUrl}/store/search?${keyword}/`;
     const response = await fetch(url);
 
     // Check if the response is okay (status 200-299)

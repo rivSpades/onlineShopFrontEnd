@@ -5,6 +5,9 @@ import { fetchCategories } from '@/src/data/categories';
 const ChooseProduct = () => {
   const [categories, setCategories] = useState([]);
 
+  // Use the environment variable for the backend URL
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   // Fetch categories from API on component mount
   useEffect(() => {
     const loadCategories = async () => {
@@ -33,7 +36,7 @@ const ChooseProduct = () => {
                 <Link legacyBehavior href={`/shop/${category.slug}`}>
                   <a>
                     <img
-                      src={'http://localhost:8000' + category.image} // Placeholder image if no image is provided
+                      src={`${apiBaseUrl}${category.image}`} // Use environment variable for image URL
                       alt={category.name}
                     />
                   </a>
