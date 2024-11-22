@@ -8,7 +8,7 @@ import React, {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Cart from '../components/common/Cart';
-import SelectComponent from '../components/common/SelectComponent';
+
 import MenuDropdown from './MenuDropdown';
 import { fetchCategories } from '../data/categories';
 import { AuthContext } from '../store/authcontext';
@@ -60,6 +60,8 @@ const Header2 = () => {
   const [categories, setCategories] = useState([]);
   const { isLoggedIn, handleLogout } = useContext(AuthContext); // Get setIsLoggedIn from context
   const profileMenuRef = useRef(null);
+  const sidebarRef = useRef(null);
+  const toggleButtonRef = useRef(null);
   const handleScroll = () => {
     const { scrollY } = window;
     dispatch({ type: 'setScrollY', payload: scrollY });
@@ -124,6 +126,27 @@ const Header2 = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) && // Check if click is outside sidebar
+        toggleButtonRef.current &&
+        state.isSidebarOpen &&
+        !toggleButtonRef.current.contains(event.target) // Allow clicks on the toggle button
+      ) {
+        toggleSidebar();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [state.isSidebarOpen]);
+
   return (
     <>
       <header
@@ -144,6 +167,7 @@ const Header2 = () => {
           </div>
 
           <div
+            ref={sidebarRef}
             className={`main-menu ${state.isSidebarOpen ? 'show-menu' : ''}`}
           >
             <div className="mobile-logo-area d-lg-none d-flex justify-content-between align-items-center">
@@ -156,9 +180,12 @@ const Header2 = () => {
               </div>
             </div>
             <ul className="menu-list">
-              <li className={` ${currentRoute === '/' ? 'active' : ''}`}>
+              <li
+                onClick={toggleSidebar}
+                className={` ${currentRoute === '/' ? 'active' : ''}`}
+              >
                 <Link
-                  className={`drop-down ${
+                  className={` ${
                     state.activeMenu === 'home-one' ? 'active' : ''
                   }`}
                   legacyBehavior
@@ -166,16 +193,12 @@ const Header2 = () => {
                 >
                   <a>Home</a>
                 </Link>
-                <i
-                  onClick={() => toggleMenu('home-one')}
-                  className={`bi bi-${
-                    state.activeMenu === 'home-one' ? 'dash' : 'plus'
-                  } dropdown-icon`}
-                />
+                <i onClick={() => toggleMenu('home-one')} />
               </li>
               {/* Dynamically Render Categories */}
               {categories.map((category) => (
                 <MenuDropdown
+                  toggleSideBar={toggleSidebar}
                   key={category.id}
                   menuData={category}
                   activeMenu={state.activeMenu}
@@ -376,6 +399,7 @@ const Header2 = () => {
               )}
             </div>
             <div
+              ref={toggleButtonRef}
               className={`sidebar-button mobile-menu-btn ${
                 state.isSidebarOpen ? 'active' : ''
               }`}

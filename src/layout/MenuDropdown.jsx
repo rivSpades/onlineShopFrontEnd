@@ -1,28 +1,54 @@
 import React from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const MenuDropdown = ({ menuData, activeMenu, toggleMenu }) => {
-  const isActive = activeMenu === menuData.slug; // Change to use name directly
+const MenuDropdown = ({ menuData, activeMenu, toggleMenu, toggleSideBar }) => {
+  const router = useRouter();
+  const isActive = activeMenu === menuData.slug;
+
+  // Handles clicks on the dropdown toggle icon
+  const handleToggleMenuClick = (e) => {
+    toggleMenu(menuData.slug); // Toggles the active menu
+  };
+
+  // Handles clicks on main categories
+  const handleMainCategoryClick = () => {
+    router.push(`/shop/?main_category=${menuData.slug}`);
+    toggleSideBar(); // Closes the sidebar
+  };
+
+  // Handles clicks on subcategories
+  const handleSubcategoryClick = (categorySlug) => {
+    router.push(
+      `/shop/?main_category=${menuData.slug}&category=${categorySlug}`
+    );
+    toggleSideBar(); // Closes the sidebar
+  };
 
   return (
-    <li className="menu-item-has-children position-inherit for-dropdown ">
-      <Link
-        href={`/shop/?main_category=${menuData.slug}`}
-        className="drop-down"
-      >
+    <li className="menu-item-has-children position-inherit for-dropdown">
+      {/* Main Category Button */}
+      <a href="" onClick={handleMainCategoryClick} className="drop-down">
         {menuData.name}
-      </Link>
+      </a>
+
+      {/* Dropdown Toggle Icon */}
       <i
-        onClick={() => toggleMenu(menuData.slug)}
+        onClick={() => {
+          toggleMenu(menuData.slug);
+        }} // Handles toggling menu visibility
         className={`bi bi-${isActive ? 'dash' : 'plus'} dropdown-icon`}
       />
+
+      {/* Subcategory Dropdown */}
       <div className={`mega-menu2 ${isActive ? 'd-block' : ''}`}>
         <div className="megamenu-wrap">
           <ul className="menu-row">
             {menuData.categories.map((category) => (
               <li className="menu-single-item" key={category.id}>
-                <Link
-                  href={`/shop/?main_category=${menuData.slug}&category=${category.slug}`}
+                {/* Subcategory Button */}
+                <a
+                  href=""
+                  onClick={() => handleSubcategoryClick(category.slug)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +60,7 @@ const MenuDropdown = ({ menuData, activeMenu, toggleMenu }) => {
                     <path d="M15.9991 4.00526C13.6711 4.8883 10.7821 6.39874 8.9917 8L10.4038 4.00021L8.99703 0C10.7858 1.60336 13.6723 3.11716 15.9991 4.00526Z" />
                   </svg>
                   {category.name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

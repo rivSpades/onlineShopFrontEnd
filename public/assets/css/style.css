@@ -2450,9 +2450,47 @@ header
   .menu-single-item
   ul
   li
+  button {
+  color: var(--primary-color1);
+  font-family: var(--font-Jost);
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  display: inline-block;
+  padding: 12px 0;
+  transition: 0.4s;
+}
+
+header
+  .main-menu
+  > ul
+  > li.menu-item-has-children
+  .mega-menu
+  .megamenu-wrap
+  .single-menu
+  .menu-row
+  .menu-single-item
+  ul
+  li
   a:hover {
   margin-left: 10px;
 }
+
+header
+  .main-menu
+  > ul
+  > li.menu-item-has-children
+  .mega-menu
+  .megamenu-wrap
+  .single-menu
+  .menu-row
+  .menu-single-item
+  ul
+  li
+  button:hover {
+  margin-left: 10px;
+}
+
 @media (max-width: 991px) {
   header
     .main-menu
@@ -2474,6 +2512,29 @@ header
     border-bottom: 1px solid #ddd;
   }
 }
+
+@media (max-width: 991px) {
+  header
+    .main-menu
+    > ul
+    > li.menu-item-has-children
+    .mega-menu
+    .megamenu-wrap
+    .single-menu
+    .menu-row
+    .menu-single-item
+    ul
+    li
+    button {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+    display: block;
+    color: var(--title-color);
+    border-bottom: 1px solid #ddd;
+  }
+}
+
 header
   .main-menu
   > ul
@@ -2644,6 +2705,24 @@ header
   padding-bottom: 0;
   margin-bottom: 10px;
 }
+header
+  .main-menu
+  > ul
+  > li.menu-item-has-children
+  .mega-menu2
+  .megamenu-wrap
+  .all-product
+  button {
+  color: var(--primary-color1);
+  font-size: 18px;
+  font-family: var(--font-Jost);
+  letter-spacing: 0.36px;
+  text-transform: capitalize;
+  font-weight: 500;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 10px;
+}
 @media (max-width: 991px) {
   header
     .main-menu
@@ -2658,6 +2737,22 @@ header
     font-size: 13px;
   }
 }
+
+@media (max-width: 991px) {
+  header
+    .main-menu
+    > ul
+    > li.menu-item-has-children
+    .mega-menu2
+    .megamenu-wrap
+    .all-product
+    button {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+}
+
 header
   .main-menu
   > ul
