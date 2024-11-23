@@ -1,5 +1,5 @@
 // Base URL for the API
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/accounts`; // Use environment variable for the base URL
+const API_URL = `${process.env.NEXT_API_URL}/accounts`; // Use environment variable for the base URL
 
 // Register function
 export const register = async (
@@ -108,7 +108,7 @@ export const validateToken = async () => {
 };
 
 // Utility function to get cookie by name
-/*export const getCookie = (name) => {
+export const getCookie = (name) => {
   if (typeof document !== 'undefined') {
     // Check if running in a browser environment
     const value = `; ${document.cookie}`;
@@ -126,4 +126,4 @@ export const validateToken = async () => {
     console.log('Not in a browser environment; document is not defined.');
   }
   return null;
-};*/
+};
