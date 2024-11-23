@@ -1,6 +1,6 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
-import { fetchProducts } from '@/src/data/productList';
+
 import Product from '@/src/layout/Product';
 import SwiperCore, {
   Autoplay,

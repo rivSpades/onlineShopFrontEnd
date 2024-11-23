@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Banner from '../components/banner/Banner';
 import ChooseProduct from '../components/Home/ChooseProduct';
-import BestSellingProduct from '../components/Home/BestSellingProduct';
+
 import NewestProduct from '../components/Home/NewestProduct';
 import InstagramSection from '../components/Home/InstagramSection';
 import { fetchBanners } from '../data/bannerData';
