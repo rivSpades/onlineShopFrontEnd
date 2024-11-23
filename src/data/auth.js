@@ -108,8 +108,8 @@ export const validateToken = async () => {
 };
 
 // Utility function to get cookie by name
-export const getCookie = (name) => {
-  if (typeof document !== undefined) {
+/*export const getCookie = (name) => {
+  if (typeof document !== 'undefined') {
     // Check if running in a browser environment
     const value = `; ${document.cookie}`;
     console.log('Document Cookies:', value); // Log all cookies for inspection
@@ -126,4 +126,4 @@ export const getCookie = (name) => {
     console.log('Not in a browser environment; document is not defined.');
   }
   return null;
-};
+};*/
