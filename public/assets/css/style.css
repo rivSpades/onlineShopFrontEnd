@@ -11622,7 +11622,7 @@ header.style-2 .nav-right::after {
   z-index: 1;
 }
 
-.full-/product-details ./product-details-content h3 {
+.full-product-details .product-details-content h3 {
   color: var(--primary-color1);
   font-family: var(--font-Jost);
   font-size: 35px;
@@ -11632,11 +11632,11 @@ header.style-2 .nav-right::after {
   margin-bottom: 20px;
 }
 @media (max-width: 576px) {
-  .full-/product-details ./product-details-content h3 {
+  .full-product-details .product-details-content h3 {
     font-size: 30px;
   }
 }
-.full-/product-details ./product-details-content p {
+.full-product-details .product-details-content p {
   color: var(--primary-color1);
   font-family: var(--font-Jost);
   font-size: 16px;
@@ -11646,11 +11646,11 @@ header.style-2 .nav-right::after {
   margin-bottom: 30px;
 }
 @media (max-width: 576px) {
-  .full-/product-details ./product-details-content p {
+  .full-product-details .product-details-content p {
     font-size: 14px;
   }
 }
-.full-/product-details ./product-details-content ul li {
+.full-product-details .product-details-content ul li {
   color: var(--primary-color1);
   font-family: var(--font-Jost);
   font-size: 16px;
@@ -11663,10 +11663,10 @@ header.style-2 .nav-right::after {
   gap: 10px;
   margin-bottom: 35px;
 }
-.full-/product-details ./product-details-content ul li svg {
+.full-product-details .product-details-content ul li svg {
   fill: var(--primary-color1);
 }
-.full-/product-details ./product-details-content.two p {
+.full-product-details .product-details-content.two p {
   margin-bottom: 0;
 }
 
