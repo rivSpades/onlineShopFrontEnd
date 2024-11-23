@@ -1,54 +1,46 @@
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const MenuDropdown = ({ menuData, activeMenu, toggleMenu, toggleSideBar }) => {
   const router = useRouter();
   const isActive = activeMenu === menuData.slug;
 
-  // Handles clicks on the dropdown toggle icon
-  const handleToggleMenuClick = (e) => {
-    toggleMenu(menuData.slug); // Toggles the active menu
-  };
-
-  // Handles clicks on main categories
-  const handleMainCategoryClick = () => {
-    router.push(`/shop/?main_category=${menuData.slug}`);
-    toggleSideBar(); // Closes the sidebar
-  };
-
-  // Handles clicks on subcategories
-  const handleSubcategoryClick = (categorySlug) => {
-    router.push(
-      `/shop/?main_category=${menuData.slug}&category=${categorySlug}`
-    );
-    toggleSideBar(); // Closes the sidebar
+  // Handle link clicks with toggle logic
+  const handleLinkClick = (e, href) => {
+    e.preventDefault(); // Prevent default link navigation
+    toggleSideBar(); // Close the sidebar
+    router.push(href); // Navigate programmatically
   };
 
   return (
     <li className="menu-item-has-children position-inherit for-dropdown">
-      {/* Main Category Button */}
-      <a href="" onClick={handleMainCategoryClick} className="drop-down">
+      <Link
+        href={`/shop/?main_category=${menuData.slug}`}
+        className="drop-down"
+        onClick={(e) =>
+          handleLinkClick(e, `/shop/?main_category=${menuData.slug}`)
+        }
+      >
         {menuData.name}
-      </a>
-
-      {/* Dropdown Toggle Icon */}
+      </Link>
       <i
-        onClick={() => {
-          toggleMenu(menuData.slug);
-        }} // Handles toggling menu visibility
+        onClick={() => toggleMenu(menuData.slug)}
         className={`bi bi-${isActive ? 'dash' : 'plus'} dropdown-icon`}
       />
-
-      {/* Subcategory Dropdown */}
       <div className={`mega-menu2 ${isActive ? 'd-block' : ''}`}>
         <div className="megamenu-wrap">
           <ul className="menu-row">
             {menuData.categories.map((category) => (
               <li className="menu-single-item" key={category.id}>
-                {/* Subcategory Button */}
-                <a
-                  href=""
-                  onClick={() => handleSubcategoryClick(category.slug)}
+                <Link
+                  href={`/shop/?main_category=${menuData.slug}&category=${category.slug}`}
+                  onClick={(e) =>
+                    handleLinkClick(
+                      e,
+                      `/shop/?main_category=${menuData.slug}&category=${category.slug}`
+                    )
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +52,7 @@ const MenuDropdown = ({ menuData, activeMenu, toggleMenu, toggleSideBar }) => {
                     <path d="M15.9991 4.00526C13.6711 4.8883 10.7821 6.39874 8.9917 8L10.4038 4.00021L8.99703 0C10.7858 1.60336 13.6723 3.11716 15.9991 4.00526Z" />
                   </svg>
                   {category.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

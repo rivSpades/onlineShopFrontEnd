@@ -77,9 +77,9 @@ function Orders({ orders, page, totalPages }) {
           <ul className="pagination-list">
             {page > 1 && (
               <li>
-                <a href={`?page=${page - 1}`} className="shop-pagi-btn">
+                <Link href={`?page=${page - 1}`} className="shop-pagi-btn">
                   <i className="bi bi-chevron-left" />
-                </a>
+                </Link>
               </li>
             )}
             <li>
@@ -89,19 +89,19 @@ function Orders({ orders, page, totalPages }) {
             </li>
             {page < totalPages && (
               <li>
-                <a
+                <Link
                   href={`?page=${page + 1}`}
                   className={page === totalPages ? 'active' : ''}
                 >
                   {totalPages}
-                </a>
+                </Link>
               </li>
             )}
             {page < totalPages && (
               <li>
-                <a href={`?page=${page + 1}`} className="shop-pagi-btn">
+                <Link href={`?page=${page + 1}`} className="shop-pagi-btn">
                   <i className="bi bi-chevron-right" />
-                </a>
+                </Link>
               </li>
             )}
           </ul>

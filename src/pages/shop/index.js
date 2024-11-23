@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ProductViewModal from '@/src/components/common/ProductViewModal';
-
+import Link from 'next/link';
 import Product from '@/src/layout/Product';
 import { fetchProducts } from '@/src/data/productList';
 import { useRouter } from 'next/router'; // Import useRouter
@@ -9,14 +9,17 @@ import Filters from '@/src/layout/Filters';
 const ShopPage = () => {
   const [isOpenSiebar, setIsOpenSidebar] = useState(false);
   const sidebarRef = useRef(null);
-
+  const [totalPages, setTotalPages] = useState(1); // Total number of pages
   const sidebarBtnRef = useRef(null);
   const [activeColumn, setActiveColumn] = useState('column-4');
   const [products, setProducts] = useState([]); // State to hold fetched products
 
   const router = useRouter();
   const { query } = router; // Destructure query from router
+  const page = parseInt(query.page || 1, 10); // Current page (default to 1)
+
   const searchKeyword = query.keyword || '';
+
   // Fetch products when the component mounts
   useEffect(() => {
     const loadProducts = async () => {
@@ -26,20 +29,20 @@ const ShopPage = () => {
           id: product.id,
           slug: product.slug,
           name: product.name,
-          description: product.description, // Assuming category name is used as brand
-          images: product.images, // Assuming images is a single URL string
-          price: `$${product.price}`, // Format price
-          oldPrice: null, // Set old price if applicable
-          outOfStock: product.stock <= 0, // Determine stock status
-          activeColumn: activeColumn, // Use activeColumn state
+          description: product.description,
+          images: product.images,
+          price: `$${product.price}`,
+          oldPrice: null,
+          outOfStock: product.stock <= 0,
+          activeColumn: activeColumn,
           variations: product.variations,
-          // Add any other properties that your Product component expects
         }))
       );
+      setTotalPages(Math.ceil(data.count / 10)); // Assuming 10 products per page
     };
 
     loadProducts();
-  }, [router]);
+  }, [router.query]);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -79,7 +82,7 @@ const ShopPage = () => {
               {searchKeyword && (
                 <p className="mb-2">Searched for "{searchKeyword}"</p>
               )}
-              <p>Showing {products.length} results </p>
+              <p>Showing {products.length} results</p>
             </div>
           </div>
           <div className="all-products list-grid-product-wrap">
@@ -94,35 +97,53 @@ const ShopPage = () => {
 
           <nav className="shop-pagination">
             <ul className="pagination-list">
-              <li>
-                <a href="#" className="shop-pagi-btn">
-                  <i className="bi bi-chevron-left" />
-                </a>
-              </li>
-              <li>
-                <a href="#">1</a>
-              </li>
-              <li>
-                <a href="#" className="active">
-                  2
-                </a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="bi bi-three-dots" />
-                </a>
-              </li>
-              <li>
-                <a href="#">6</a>
-              </li>
-              <li>
-                <a href="#" className="shop-pagi-btn">
-                  <i className="bi bi-chevron-right" />
-                </a>
-              </li>
+              {/* Previous Page */}
+              {page > 1 && (
+                <li>
+                  <Link
+                    href={{
+                      pathname: '/shop',
+                      query: { ...query, page: page - 1 },
+                    }}
+                    className="shop-pagi-btn"
+                  >
+                    <i className="bi bi-chevron-left" />
+                  </Link>
+                </li>
+              )}
+
+              {/* Page Numbers */}
+              {[...Array(totalPages)].map((_, index) => {
+                const pageNumber = index + 1;
+                return (
+                  <li key={pageNumber}>
+                    <Link
+                      href={{
+                        pathname: '/shop',
+                        query: { ...query, page: pageNumber },
+                      }}
+                      className={page === pageNumber ? 'active' : ''}
+                    >
+                      {pageNumber}
+                    </Link>
+                  </li>
+                );
+              })}
+
+              {/* Next Page */}
+              {page < totalPages && (
+                <li>
+                  <Link
+                    href={{
+                      pathname: '/shop',
+                      query: { ...query, page: page + 1 },
+                    }}
+                    className="shop-pagi-btn"
+                  >
+                    <i className="bi bi-chevron-right" />
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         </div>
