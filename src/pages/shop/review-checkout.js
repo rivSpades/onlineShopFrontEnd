@@ -37,7 +37,7 @@ const ReviewCheckout = () => {
       'enable-funding': 'venmo,applepay',
       'buyer-country': orderData?.countryCode || 'PT', // Fallback if countryCode isn't available
       currency: 'EUR',
-      'data-page-type': 'product-details',
+      'data-page-type': '/product-details',
       components: 'buttons',
       'data-sdk-integration-source': 'developer-studio',
     }),

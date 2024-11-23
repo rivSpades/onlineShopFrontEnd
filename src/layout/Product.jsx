@@ -4,23 +4,27 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const Product = ({ product }) => {
+  console.log(product);
   return (
     <div
-      className={`col${
-        product.activeColumn === 'column-4'
-          ? '-lg-3'
-          : product.activeColumn === 'column-3'
-          ? '-md-4'
-          : product.activeColumn === 'column-2'
-          ? '-sm-6'
-          : 'nop'
-      }`}
+      className={
+        product.activeColumn &&
+        `col${
+          product.activeColumn === 'column-4'
+            ? '-lg-3'
+            : product.activeColumn === 'column-3'
+            ? '-md-4'
+            : product.activeColumn === 'column-2'
+            ? '-sm-6'
+            : 'nop'
+        }`
+      }
     >
       <div className="product-card style-3 hover-btn">
         <div className="product-card-img">
           <Link
             legacyBehavior
-            href={`/shop/product-default?slug=${product.slug}`}
+            href={`/shop/product-detail?slug=${product.slug}`}
           >
             <a>
               {/* Display the first image or a placeholder if there are no images */}
@@ -37,14 +41,14 @@ const Product = ({ product }) => {
               </div>
             </a>
           </Link>
-          {product.stock && (
+          {product.stock < 1 && (
             <div className="out-of-stock">
               <span>Out Of Stock</span>
             </div>
           )}
           <div className="overlay">
             <div className="cart-area">
-              {!product.outOfStock && (
+              {product.stock > 0 && (
                 <Link legacyBehavior href="/shop/cart">
                   <a className="hover-btn3 add-cart-btn">
                     {product.variations ? 'Select Options' : 'Add To Cart'}
@@ -76,7 +80,7 @@ const Product = ({ product }) => {
           <h6>
             <Link
               legacyBehavior
-              href={`/shop/product-default?slug=${product.slug}`}
+              href={`/shop/product-detail?slug=${product.slug}`}
             >
               <a className="hover-underline">{product.name}</a>
             </Link>

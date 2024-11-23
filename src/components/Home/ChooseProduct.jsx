@@ -33,7 +33,10 @@ const ChooseProduct = () => {
           {categories.map((category) => (
             <div className="col-lg-4 col-md-6" key={category.id}>
               <div className="choose-product-card hover-img style-2">
-                <Link legacyBehavior href={`/shop/${category.slug}`}>
+                <Link
+                  legacyBehavior
+                  href={`/shop?main_category=${category.slug}`}
+                >
                   <a>
                     <img
                       src={`${apiBaseUrl}${category.image}`} // Use environment variable for image URL

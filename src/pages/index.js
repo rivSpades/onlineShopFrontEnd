@@ -5,8 +5,9 @@ import BestSellingProduct from '../components/Home/BestSellingProduct';
 import NewestProduct from '../components/Home/NewestProduct';
 import InstagramSection from '../components/Home/InstagramSection';
 import { fetchBanners } from '../data/bannerData';
+import { fetchProducts } from '../data/productList';
 
-export default function Home({ banners }) {
+export default function Home({ banners, products }) {
   return (
     <>
       <Head>
@@ -18,8 +19,9 @@ export default function Home({ banners }) {
 
       <Banner banners={banners} />
       <ChooseProduct />
-      <BestSellingProduct />
-      <NewestProduct />
+
+      {/* Pass fetched products as props */}
+      {products && <NewestProduct products={products} />}
       <InstagramSection />
     </>
   );
@@ -28,16 +30,20 @@ export default function Home({ banners }) {
 export async function getServerSideProps() {
   try {
     const banners = await fetchBanners();
+    const productsResponse = await fetchProducts({ ordering: '-id' });
+    console.log(productsResponse);
     return {
       props: {
         banners: Array.isArray(banners) ? banners : [],
+        products: productsResponse?.results || [], // Ensure products is an array
       },
     };
   } catch (error) {
-    console.error('Error fetching banners:', error);
+    console.error('Error fetching data:', error);
     return {
       props: {
-        banners: [], // Return an empty array in case of error
+        banners: [],
+        products: [], // Return an empty array in case of error
       },
     };
   }
