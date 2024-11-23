@@ -31,26 +31,26 @@ const ChooseProduct = () => {
         </div>
         <div className="row gy-4 justify-content-center">
           {categories.map((category) => (
-            <div className="col-lg-4 col-md-6" key={category.id}>
-              <div className="choose-product-card hover-img style-2">
-                <Link
-                  legacyBehavior
-                  href={`/shop?main_category=${category.slug}`}
-                >
+            <Link legacyBehavior href={`/shop?main_category=${category.slug}`}>
+              <div className="col-lg-4 col-md-6" key={category.id}>
+                <div className="choose-product-card hover-img style-2">
                   <a>
                     <img
                       src={`${apiBaseUrl}${category.image}`} // Use environment variable for image URL
                       alt={category.name}
                     />
                   </a>
-                </Link>
-                <div className="choose-product-card-content">
-                  <h2 className="first-text">{category.name}</h2>
-                  {/* Optionally, display a second line if you have a specific format */}
-                  <h2 className="second-text">{category.description || ''}</h2>
+
+                  <div className="choose-product-card-content">
+                    <h2 className="first-text">{category.name}</h2>
+                    {/* Optionally, display a second line if you have a specific format */}
+                    <h2 className="second-text">
+                      {category.description || ''}
+                    </h2>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
