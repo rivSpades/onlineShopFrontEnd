@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../store/authcontext';
 import { login, register } from '../data/auth'; // Adjust the import path
+import { useFeedback } from '../store/feedbackcontext';
+import { useRouter } from 'next/router';
 
 const AuthModal = () => {
   const { setIsLoggedIn } = useContext(AuthContext); // Get setIsLoggedIn from context
@@ -8,7 +10,7 @@ const AuthModal = () => {
   // State variables for login and registration
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-
+  const { setFeedback } = useFeedback();
   // New state variables for registration
   const [registerFirstName, setRegisterFirstName] = useState('');
   const [registerLastName, setRegisterLastName] = useState('');
@@ -16,7 +18,7 @@ const AuthModal = () => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
-
+  const router = useRouter();
   // New state for validation errors
   const [errors, setErrors] = useState({}); // Initialize as an empty object
 
@@ -61,7 +63,6 @@ const AuthModal = () => {
     );
 
     if (response.ok) {
-      alert('Registration successful! Please verify your email.');
       // Clear registration fields after successful registration
       setRegisterFirstName('');
       setRegisterLastName('');
@@ -69,6 +70,13 @@ const AuthModal = () => {
       setRegisterEmail('');
       setRegisterPassword('');
       setRegisterConfirmPassword('');
+      setFeedback({
+        type: 'success',
+        title: 'Registration successful!',
+        message: 'Please verify your email.',
+      });
+      document.getElementById('close-modal-button').click();
+      router.push('/feedback');
     } else {
       // Set the errors state with API response errors
       console.log(response);

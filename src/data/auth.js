@@ -1,5 +1,5 @@
 // Base URL for the API
-const API_URL = `${process.env.NEXT_API_URL}/accounts`; // Use environment variable for the base URL
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/accounts`; // Use environment variable for the base URL
 
 // Register function
 export const register = async (
