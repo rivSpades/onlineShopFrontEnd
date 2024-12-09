@@ -127,3 +127,25 @@ export const getCookie = (name) => {
   }
   return null;
 };
+
+export const activateAccount = async (uid, token) => {
+  try {
+    const response = await fetch(`${API_URL}/activate/${uid}/${token}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include', // Send cookies with the request
+    });
+
+    if (!response.ok) {
+      throw new Error('Token validation failed');
+    }
+
+    const data = await response.json();
+    return response; // Return token validation data
+  } catch (error) {
+    console.error('activate account link error:', error.message);
+    throw error; // Handle error response
+  }
+};
