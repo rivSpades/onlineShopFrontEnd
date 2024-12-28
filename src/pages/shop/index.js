@@ -24,20 +24,8 @@ const ShopPage = () => {
   useEffect(() => {
     const loadProducts = async () => {
       const data = await fetchProducts(query); // Call your API
-      setProducts(
-        data.results.map((product) => ({
-          id: product.id,
-          slug: product.slug,
-          name: product.name,
-          description: product.description,
-          images: product.images,
-          price: `$${product.price}`,
-          oldPrice: null,
-          outOfStock: product.stock <= 0,
-          activeColumn: activeColumn,
-          variations: product.variations,
-        }))
-      );
+      setProducts(data.results);
+
       setTotalPages(Math.ceil(data.count / 10)); // Assuming 10 products per page
     };
 

@@ -90,7 +90,7 @@ const ProductDefaultPage = ({ product, error }) => {
 
                 <p>{product.description}</p>
                 <div className="price-area">
-                  <p className="price">${product.price.toFixed(2)}</p>
+                  <p className="price">{product.price.toFixed(2)}€</p>
                 </div>
                 <div className="quantity-color-area">
                   <div className="quantity-color">
@@ -107,14 +107,15 @@ const ProductDefaultPage = ({ product, error }) => {
                         <li
                           key={variation.id}
                           className={`select-wrap ${
-                            selectedVariations[variation.name] ===
-                            variation.value
+                            selectedVariations[
+                              variation.variation_type.name
+                            ] === variation.value
                               ? 'selected'
                               : ''
                           }`}
                           onClick={() =>
                             handleVariationChange(
-                              variation.name,
+                              variation.variation_type.name,
                               variation.value
                             )
                           }

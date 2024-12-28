@@ -4564,6 +4564,13 @@ header.style-2 .nav-right::after {
   background-color: var(--primary-color1);
   color: var(--white-color);
 }
+
+.product-card .product-card-content .product-size li.selected {
+  background-color: var(--primary-color1);
+  border: 1px solid var(--primary-color1);
+  color: var(--white-color);
+}
+
 .product-card:hover .product-card-img .overlay {
   opacity: 1;
   transform: scaleY(1);
@@ -9851,6 +9858,7 @@ header.style-2 .nav-right::after {
   span {
   background-color: #4a212b;
 }
+
 .shop-details-content
   .quantity-color-area
   .quantity-color
@@ -9902,6 +9910,7 @@ header.style-2 .nav-right::after {
   line-height: 1.2;
   transition: 0.5s;
 }
+
 .shop-details-content
   .quantity-color-area
   .quantity-color
@@ -9911,6 +9920,7 @@ header.style-2 .nav-right::after {
   border: 1px solid var(--primary-color1);
   color: var(--white-color);
 }
+
 .shop-details-content .shop-details-btn {
   display: flex;
   align-items: center;

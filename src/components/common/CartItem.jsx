@@ -22,7 +22,10 @@ const CartItem = ({ item, onRemove, onAdd }) => {
           <div className="content">
             <div className="price-and-btn d-flex align-items-center justify-content-between">
               <span>
-                {item.price} <del>${item.originalPrice}</del>
+                {item.variation.length > 0
+                  ? item.variation[0].price
+                  : item.price}{' '}
+                €<del>{item.originalPrice}</del>
               </span>
               <button
                 className="close-btn"
@@ -36,7 +39,8 @@ const CartItem = ({ item, onRemove, onAdd }) => {
             </p>
             {item.variation.length > 0 && (
               <p>
-                {item.variation[0].name}: {item.variation[0].value}{' '}
+                {item.variation[0].variation_type.name}:{' '}
+                {item.variation[0].value} {item.variation[0].unit.symbol}
               </p>
             )}
           </div>
