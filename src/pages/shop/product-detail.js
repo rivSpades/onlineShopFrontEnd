@@ -7,25 +7,24 @@ import { addToCart } from '@/src/data/cart';
 import { fetchProductDetail } from '@/src/data/productList';
 import { useCart } from '@/src/store/cartcontext';
 const ProductDefaultPage = ({ product, error }) => {
-  const [selectedVariations, setSelectedVariations] = useState({});
+  const [selectedVariation, setSelectedVariation] = useState(
+    product.variations && product.variations.length > 0
+      ? product.variations[0]
+      : null
+  );
   const [quantity, setQuantity] = useState(1); // Default quantity to 1
+  console.log(product);
   useMagneticHover();
   const { addToCart, refetchCartItems } = useCart();
-  const handleVariationChange = (type, value) => {
-    // Check if the currently selected value is the same as the one clicked
-    const currentlySelected = selectedVariations[type];
-
-    // If it's already selected, unselect it; otherwise, set the new value
-    setSelectedVariations((prev) => ({
-      [type]: currentlySelected === value ? null : value, // Toggle selection
-    }));
+  const handleVariationChange = (variation) => {
+    setSelectedVariation(variation);
   };
   const handleAddToCart = async () => {
-    await addToCart(product.id, quantity, selectedVariations);
-    setQuantity(1);
-    setSelectedVariations({});
+    await addToCart(product.id, quantity, {
+      'id': selectedVariation.id,
+    });
   };
-
+  console.log(selectedVariation);
   if (error) return <p>{error}</p>;
   if (!product) return <p>Product not found</p>;
   return (
@@ -36,29 +35,46 @@ const ProductDefaultPage = ({ product, error }) => {
             <div className="col-lg-6">
               <div className="shop-details-img">
                 <div className="tab-content" id="v-pills-tabContent">
-                  {product.images.map((image, index) => (
-                    <div
-                      key={image.id}
-                      style={{ overflow: 'hidden' }}
-                      className={`tab-pane fade ${
-                        index === 0 ? 'show active' : ''
-                      }`}
-                      id={`v-pills-img${index + 1}`}
-                      role="tabpanel"
-                      aria-labelledby={`v-pills-img${index + 1}-tab`}
-                    >
-                      <div
-                        className="shop-details-tab-img product-img--main"
-                        data-scale="1.4"
-                        data-image={image.image} // Set the data-image to the current image URL
-                      >
-                        <img
-                          src={image.image}
-                          alt={`Product Image ${index + 1}`}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                  {selectedVariation?.images &&
+                  selectedVariation.images.length > 0
+                    ? selectedVariation.images.map((image, index) => (
+                        <div
+                          key={image.id}
+                          style={{ overflow: 'hidden' }}
+                          className={`tab-pane fade ${
+                            index === 0 ? 'show active' : ''
+                          }`}
+                          id={`v-pills-img${index + 1}`}
+                          role="tabpanel"
+                          aria-labelledby={`v-pills-img${index + 1}-tab`}
+                        >
+                          <div
+                            className="shop-details-tab-img product-img--main"
+                            data-scale="1.4"
+                          >
+                            <img src={image.image_url} alt={product.name} />
+                          </div>
+                        </div>
+                      ))
+                    : product.images.map((image, index) => (
+                        <div
+                          key={image.id}
+                          style={{ overflow: 'hidden' }}
+                          className={`tab-pane fade ${
+                            index === 0 ? 'show active' : ''
+                          }`}
+                          id={`v-pills-img${index + 1}`}
+                          role="tabpanel"
+                          aria-labelledby={`v-pills-img${index + 1}-tab`}
+                        >
+                          <div
+                            className="shop-details-tab-img product-img--main"
+                            data-scale="1.4"
+                          >
+                            <img src={image.image_url} alt={product.name} />
+                          </div>
+                        </div>
+                      ))}
                 </div>
                 <div
                   className="nav nav-pills"
@@ -66,7 +82,11 @@ const ProductDefaultPage = ({ product, error }) => {
                   role="tablist"
                   aria-orientation="vertical"
                 >
-                  {product.images.map((image, index) => (
+                  {(selectedVariation?.images &&
+                  selectedVariation.images.length > 0
+                    ? selectedVariation.images
+                    : product.images
+                  ).map((image, index) => (
                     <button
                       key={image.id}
                       className={`nav-link ${index === 0 ? 'active' : ''}`}
@@ -78,7 +98,7 @@ const ProductDefaultPage = ({ product, error }) => {
                       aria-controls={`v-pills-img${index + 1}`}
                       aria-selected={index === 0}
                     >
-                      <img src={image.image} alt={`Thumbnail ${index + 1}`} />
+                      <img src={image.image_url} alt={product.name} />
                     </button>
                   ))}
                 </div>
@@ -90,7 +110,13 @@ const ProductDefaultPage = ({ product, error }) => {
 
                 <p>{product.description}</p>
                 <div className="price-area">
-                  <p className="price">{product.price.toFixed(2)}€</p>
+                  <p className="price">
+                    {' '}
+                    {selectedVariation
+                      ? selectedVariation.price
+                      : product.price}
+                    €
+                  </p>
                 </div>
                 <div className="quantity-color-area">
                   <div className="quantity-color">
@@ -106,21 +132,14 @@ const ProductDefaultPage = ({ product, error }) => {
                       {product.variations.map((variation) => (
                         <li
                           key={variation.id}
-                          className={`select-wrap ${
-                            selectedVariations[
-                              variation.variation_type.name
-                            ] === variation.value
+                          className={
+                            selectedVariation?.id === variation.id
                               ? 'selected'
                               : ''
-                          }`}
-                          onClick={() =>
-                            handleVariationChange(
-                              variation.variation_type.name,
-                              variation.value
-                            )
                           }
+                          onClick={() => handleVariationChange(variation)}
                         >
-                          {variation.value}
+                          {variation.value} {variation.unit.symbol}
                         </li>
                       ))}
                     </ul>
@@ -218,17 +237,21 @@ const ProductDefaultPage = ({ product, error }) => {
                       <table className="table total-table2">
                         <tbody>
                           <tr>
-                            <td>SKU</td>
-                            <td>123ABC</td>
+                            <td>Name</td>
+                            <td>{product.name}</td>
                           </tr>
                           <tr>
                             <td>Category</td>
-                            <td>Nail Polish</td>
+                            <td>{product.category.name}</td>
                           </tr>
 
                           <tr>
                             <td>Brand</td>
-                            <td>Revlon </td>
+                            <td>{product.brand.name} </td>
+                          </tr>
+                          <tr>
+                            <td>Gender</td>
+                            <td>{product.gender.name} </td>
                           </tr>
                         </tbody>
                       </table>

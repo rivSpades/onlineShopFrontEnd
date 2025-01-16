@@ -134,7 +134,7 @@ const SpecialOffer = () => {
                   </div>
                 </div>
                 <Link legacyBehavior href="/shop">
-                  <a className="primary-btn1 style-2 hover-btn3">*Shop Now*</a>
+                  <a className="primary-btn1 style-2 hover-btn3">Shop Now</a>
                 </Link>
               </div>
             </div>

@@ -20,11 +20,11 @@ function CartSummary({ data }) {
             <div className="product-area">
               <div className="product-img">
                 <img
-                  src={
-                    item.images[0]?.image
-                      ? `${apiBaseUrl}${item.images[0]?.image}` // Use dynamic base URL
-                      : '/assets/img/default-image.png'
-                  }
+                  src={`${
+                    item.variation[0].images.length > 0
+                      ? item.variation[0].images[0].image_url
+                      : item.images.length > 0 && item.images[0].image_url
+                  }`}
                   alt={item.product_name}
                 />
               </div>
@@ -38,13 +38,19 @@ function CartSummary({ data }) {
                   </strong>
                   <strong>
                     <i className="bi bi-x-lg px-2" />
-                    <span className="product-price">${item.price}</span>
+                    <span className="product-price">
+                      {item.variation[0].price} €
+                    </span>
                   </strong>
                 </div>
                 {/* Display variations if available */}
                 {item.variation?.map((variant) => (
-                  <div key={variant.name} className="product-variation">
-                    {variant.name}: {variant.value}
+                  <div
+                    key={variant.variation_type.name}
+                    className="product-variation"
+                  >
+                    {variant.variation_type.name}: {variant.value}{' '}
+                    {variant.unit.symbol}
                   </div>
                 ))}
               </div>

@@ -158,17 +158,6 @@ const Filters = ({ isdropdown, query }) => {
                 </div>
               </div>
             )}
-
-            <div className="col-lg-3 col-sm-6">
-              <div className="selector">
-                <SelectComponent
-                  options={['Price Low to High', 'Price High to Low']}
-                  placeholder="Default Sorting"
-                  onSelect={(value) => handleSelectChange('sort', value)}
-                  selectedOption={selectedFilters.sort} // Set initial selected value for sort
-                />
-              </div>
-            </div>
           </div>
         </div>
         <div className="col-lg-2 d-flex justify-content-center">
@@ -177,7 +166,7 @@ const Filters = ({ isdropdown, query }) => {
               className="primary-btn3 black-bg hover-btn5 hover-white"
               onClick={clearFilters}
             >
-              Clear Filters
+              Show All
             </button>
           )}
         </div>

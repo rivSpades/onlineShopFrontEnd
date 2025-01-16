@@ -99,17 +99,17 @@ const Cart = () => {
             <ul>
               <li>
                 <span>Sub Total</span>
-                <span>{cartData.total.toFixed(2)}</span>
+                <span>{cartData.total} €</span>
               </li>
               <li>
-                <span>Tax({cartData.tax * 100}%)</span>
-                <span>{cartData.total * cartData.tax.toFixed(2)}</span>
+                <span>Tax</span>
+                <span>{cartData.tax} €</span>
               </li>
             </ul>
             <ul className="total">
               <li>
                 <span>Total</span>
-                <span>{cartData.grand_total.toFixed(2)}</span>
+                <span>{cartData.grand_total} €</span>
               </li>
             </ul>
           </div>

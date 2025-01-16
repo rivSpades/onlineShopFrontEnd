@@ -19,21 +19,13 @@ function CostSummary({ data }) {
           <thead>
             <tr>
               <th>Subtotal</th>
-              <th>${summaryData.subtotal.toFixed(2)}</th>
+              <th>{summaryData.subtotal} €</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td className="tax">Tax</td>
-              <td>${summaryData.tax.toFixed(2)}</td>
-            </tr>
-            <tr>
-              <td>Total (tax excl.)</td>
-              <td>${summaryData.subtotal.toFixed(2)}</td>
-            </tr>
-            <tr>
-              <td>Total (tax incl.)</td>
-              <td>${summaryData.total.toFixed(2)}</td>
+              <td>{summaryData.tax} €</td>
             </tr>
           </tbody>
         </table>
@@ -43,7 +35,7 @@ function CostSummary({ data }) {
           <thead>
             <tr>
               <th>Total</th>
-              <th>${summaryData.grand_total.toFixed(2)}</th>
+              <th>{summaryData.grand_total} €</th>
             </tr>
           </thead>
         </table>

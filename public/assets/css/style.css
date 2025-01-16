@@ -3985,6 +3985,7 @@ header.style-2 .nav-right::after {
 ........................*/
 .choose-product-section .choose-product-card {
   position: relative;
+  cursor: pointer;
 }
 .choose-product-section .choose-product-card img {
   width: 100%;

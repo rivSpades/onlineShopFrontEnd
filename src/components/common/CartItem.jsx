@@ -3,18 +3,20 @@ import React from 'react';
 const CartItem = ({ item, onRemove, onAdd }) => {
   // Use the environment variable for the backend URL
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
-
+  console.log(item);
   const variationDetails =
-    item.variation.length > 0
-      ? { [item.variation[0].name]: item.variation[0].value }
-      : {};
+    item.variation.length > 0 ? { 'id': item.variation[0].id } : {};
 
   return (
     <li className="single-item">
       <div className="item-area">
         <div className="item-img ">
           <img
-            src={`${apiBaseUrl}${item.images[0].image}`}
+            src={`${
+              item.variation[0].images.length > 0
+                ? item.variation[0].images[0].image_url
+                : item.images.length > 0 && item.images[0].image_url
+            }`}
             alt={item.product_name}
           />
         </div>
@@ -34,13 +36,14 @@ const CartItem = ({ item, onRemove, onAdd }) => {
                 <i className="bi bi-trash" />
               </button>
             </div>
-            <p>
-              <a href="#">{item.product_name}</a>
-            </p>
+            <p>{item.product_name}</p>
             {item.variation.length > 0 && (
               <p>
-                {item.variation[0].variation_type.name}:{' '}
-                {item.variation[0].value} {item.variation[0].unit.symbol}
+                <a>
+                  {' '}
+                  {item.variation[0].variation_type.name}:{' '}
+                  {item.variation[0].value} {item.variation[0].unit.symbol}
+                </a>
               </p>
             )}
           </div>

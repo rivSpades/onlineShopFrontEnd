@@ -15,7 +15,9 @@ const Product = ({ product }) => {
   };
 
   const handleAddToCart = async () => {
-    await addToCart(product.id, 1, selectedVariation);
+    await addToCart(product.id, 1, {
+      'id': selectedVariation.id,
+    });
   };
 
   return (
