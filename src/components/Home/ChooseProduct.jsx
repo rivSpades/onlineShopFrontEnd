@@ -33,22 +33,21 @@ const ChooseProduct = () => {
           {categories.map((category) => (
             <Link legacyBehavior href={`/shop?main_category=${category.slug}`}>
               <div className="col-lg-4 col-md-6" key={category.id}>
-                <a>
-                  <div className="choose-product-card hover-img style-2">
+                <div className="choose-product-card hover-img style-2">
+                  <a>
                     <img
                       src={`${apiBaseUrl}${category.image}`} // Use environment variable for image URL
                       alt={category.name}
                     />
-
-                    <div className="choose-product-card-content">
-                      <h2 className="first-text">{category.name}</h2>
-                      {/* Optionally, display a second line if you have a specific format */}
-                      <h2 className="second-text">
-                        {category.description || ''}
-                      </h2>
-                    </div>
+                  </a>
+                  <div className="choose-product-card-content">
+                    <h2 className="first-text">{category.name}</h2>
+                    {/* Optionally, display a second line if you have a specific format */}
+                    <h2 className="second-text">
+                      {category.description || ''}
+                    </h2>
                   </div>
-                </a>
+                </div>
               </div>
             </Link>
           ))}

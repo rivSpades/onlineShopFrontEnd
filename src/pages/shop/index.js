@@ -5,7 +5,7 @@ import Product from '@/src/layout/Product';
 import { fetchProducts } from '@/src/data/productList';
 import { useRouter } from 'next/router'; // Import useRouter
 import Filters from '@/src/layout/Filters';
-
+import CategoryTop from '@/src/components/Home/CategoryTop';
 const ShopPage = () => {
   const [isOpenSiebar, setIsOpenSidebar] = useState(false);
   const sidebarRef = useRef(null);
@@ -62,6 +62,7 @@ const ShopPage = () => {
 
   return (
     <>
+      <CategoryTop />
       <div className="filter-dropdown-section mt-110 mb-110">
         <div className="container-fluid container-xl">
           <div className="shop-columns-title-section mb-40 d-block">

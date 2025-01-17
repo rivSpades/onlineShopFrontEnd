@@ -3369,6 +3369,9 @@ header.style-2 .nav-right::after {
   display: flex;
   position: relative;
 }
+
+
+
 .banner-section .swiper-slide-active .banner-content h1 {
   animation: leftRight 1s;
 }
@@ -3396,7 +3399,7 @@ header.style-2 .nav-right::after {
 }
 .banner-section .banner-wrapper .banner-left {
   padding: 190px 30px 130px 10%;
-  background-color: #fcf7ee;
+  background-color: #ffffff;
   width: 45%;
   position: relative;
   display: flex;
@@ -13289,9 +13292,14 @@ home2 Topbar Css
 /*=======================================
 home2 Banner Css
 =======================================*/
-.banner-2-section {
+.banner-2-section .container-fluid .row {
+display:flex;
+justify-content:center;
+}
+.banner-2-section  {
   overflow: hidden;
 }
+
 .banner-2-section .swiper-slide-active .banner-2-right-content h1 {
   animation: fade-In-Down 1.5s;
 }
