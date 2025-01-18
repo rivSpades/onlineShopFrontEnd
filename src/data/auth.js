@@ -49,7 +49,8 @@ export const login = async (email, password) => {
     });
 
     if (!response.ok) {
-      throw new Error('Login failed');
+      const data = await response.json();
+      return data;
     }
 
     // Tokens are set in HTTP-only cookies by the server

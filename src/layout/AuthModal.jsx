@@ -25,7 +25,7 @@ const AuthModal = () => {
   // Handle login submission
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-
+    setErrors({});
     const response = await login(loginEmail, loginPassword);
     console.log(response);
 
@@ -37,7 +37,7 @@ const AuthModal = () => {
       window.location.reload('/');
     } else {
       console.log(response);
-      alert('Login failed: ' + (response.error || 'Invalid credentials'));
+      setErrors(response); // Assuming response contains error object
     }
   };
 
@@ -158,6 +158,9 @@ const AuthModal = () => {
                         onChange={(e) => setLoginPassword(e.target.value)}
                       />
                       <i className="bi bi-eye-slash" id="togglePassword" />
+                    </div>
+                    <div>
+                      {errors && <span className="error">{errors.error}</span>}
                     </div>
                     <div className="form-remember-forget">
                       <div className="remember">

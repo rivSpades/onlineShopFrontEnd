@@ -3133,11 +3133,7 @@ header.style-2 .nav-right .search-area .search-btn {
 header.style-2 .nav-right .search-area .search-btn i {
   font-size: 23px;
 }
-@media (max-width: 991px) {
-  header.style-2 .nav-right .search-area .search-btn {
-    display: none;
-  }
-}
+
 @media (min-width: 1200px) and (max-width: 1399px) {
   header.style-2 .nav-right .search-area {
     max-width: 230px;
@@ -3156,11 +3152,7 @@ header.style-2 .nav-right .search-area .search-input {
   transform: scaleY(0);
   transform-origin: top;
 }
-@media (max-width: 991px) {
-  header.style-2 .nav-right .search-area .search-input {
-    display: none;
-  }
-}
+
 header.style-2 .nav-right .search-area .search-input.active {
   display: block;
   transform: scaleY(1);
@@ -3369,8 +3361,6 @@ header.style-2 .nav-right::after {
   display: flex;
   position: relative;
 }
-
-
 
 .banner-section .swiper-slide-active .banner-content h1 {
   animation: leftRight 1s;
@@ -13293,10 +13283,10 @@ home2 Topbar Css
 home2 Banner Css
 =======================================*/
 .banner-2-section .container-fluid .row {
-display:flex;
-justify-content:center;
+  display: flex;
+  justify-content: center;
 }
-.banner-2-section  {
+.banner-2-section {
   overflow: hidden;
 }
 

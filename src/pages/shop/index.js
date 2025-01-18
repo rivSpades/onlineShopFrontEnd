@@ -55,6 +55,18 @@ const ShopPage = () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isOpenSiebar]);
+  useEffect(() => {
+    const allProductsDiv = document.querySelector('.filter-dropdown-section');
+    if (
+      allProductsDiv &&
+      (router.query.category || router.query.main_category)
+    ) {
+      allProductsDiv.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start', // Scroll to the top of the "all-products" div
+      });
+    }
+  }, []); // This effect runs only once when the component is mounted
 
   const toggleSidebar = () => {
     setIsOpenSidebar(!isOpenSiebar);
