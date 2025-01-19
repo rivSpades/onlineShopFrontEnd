@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '../store/cartcontext';
 const Product = ({ product }) => {
@@ -10,6 +10,14 @@ const Product = ({ product }) => {
 
   const { addToCart } = useCart(); // Use the Cart context for adding items to the cart
 
+  useEffect(() => {
+    setSelectedVariation(
+      product.variations && product.variations.length > 0
+        ? product.variations[0]
+        : null
+    );
+  }, [product]);
+
   const handleVariationChange = (variation) => {
     setSelectedVariation(variation);
   };
@@ -19,7 +27,7 @@ const Product = ({ product }) => {
       'id': selectedVariation.id,
     });
   };
-
+  console.log(product);
   return (
     <div
       className={

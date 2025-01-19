@@ -24,12 +24,10 @@ const NewestProduct = ({ products }) => {
       },
       breakpoints: {
         280: {
-          slidesPerView: 1,
-          spaceBetween: 15,
+          slidesPerView: 2,
         },
         386: {
-          slidesPerView: 1,
-          spaceBetween: 15,
+          slidesPerView: 2,
         },
         576: {
           slidesPerView: 2,

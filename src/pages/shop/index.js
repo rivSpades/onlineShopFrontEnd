@@ -30,6 +30,8 @@ const ShopPage = () => {
     };
 
     loadProducts();
+    console.log('passa aqui');
+    console.log(router.query);
   }, [router.query]);
 
   useEffect(() => {
@@ -72,6 +74,8 @@ const ShopPage = () => {
     setIsOpenSidebar(!isOpenSiebar);
   };
 
+  console.log(products);
+
   return (
     <>
       <CategoryTop />
@@ -87,7 +91,7 @@ const ShopPage = () => {
             </div>
           </div>
           <div className="all-products list-grid-product-wrap">
-            <div className="row gy-4 mb-80">
+            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 gy-4 mb-80">
               {products.map((product, index) => (
                 <Product key={index} product={{ ...product, activeColumn }} />
               ))}
