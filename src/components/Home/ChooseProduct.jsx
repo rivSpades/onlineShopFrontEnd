@@ -29,7 +29,7 @@ const ChooseProduct = () => {
         <div className="section-title text-center">
           <h3>Choose What You Want</h3>
         </div>
-        <div className="row gy-4 justify-content-center">
+        <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 gy-4  justify-content-center">
           {categories.map((category) => (
             <Link legacyBehavior href={`/shop?main_category=${category.slug}`}>
               <div className="col-lg-4 col-md-6" key={category.id}>

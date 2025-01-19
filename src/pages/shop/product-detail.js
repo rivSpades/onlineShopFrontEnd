@@ -105,10 +105,15 @@ const ProductDefaultPage = ({ product, error }) => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="shop-details-content">
+              <div className="shop-details-content  style-3">
                 <h1>{product.name}</h1>
 
                 <p>{product.description}</p>
+                {selectedVariation.quantity < 1 && (
+                  <h6>
+                    Availability: <span>Out of Stock</span>
+                  </h6>
+                )}
                 <div className="price-area">
                   <p className="price">
                     {' '}
@@ -118,14 +123,18 @@ const ProductDefaultPage = ({ product, error }) => {
                     €
                   </p>
                 </div>
+
                 <div className="quantity-color-area">
-                  <div className="quantity-color">
-                    <h6 className="widget-title text-center">Quantity</h6>
-                    <QuantityCounter
-                      quantity={quantity}
-                      setQuantity={setQuantity}
-                    />
-                  </div>
+                  {selectedVariation.quantity > 0 && (
+                    <div className="quantity-color">
+                      <h6 className="widget-title text-center">Quantity</h6>
+                      <QuantityCounter
+                        quantity={quantity}
+                        setQuantity={setQuantity}
+                      />
+                    </div>
+                  )}
+
                   <div className="quantity-color">
                     <h6 className="widget-title">Options</h6>
                     <ul className="product-size">
@@ -145,14 +154,17 @@ const ProductDefaultPage = ({ product, error }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="shop-details-btn">
-                  <button
-                    className="primary-btn1 hover-btn3"
-                    onClick={handleAddToCart} // Attach the click handler here
-                  >
-                    Add to Cart
-                  </button>
-                </div>
+                {selectedVariation.quantity > 0 && (
+                  <div className="shop-details-btn">
+                    <button
+                      className="primary-btn1 hover-btn3"
+                      onClick={handleAddToCart} // Attach the click handler here
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                )}
+
                 <div className="product-info">
                   <ul className="product-info-list">
                     <li>

@@ -4016,6 +4016,15 @@ header.style-2 .nav-right::after {
     font-size: 50px;
   }
 }
+@media (max-width: 576px) {
+  .choose-product-section
+    .choose-product-card
+    .choose-product-card-content
+    .first-text {
+    font-size: 25px;
+  }
+}
+
 .choose-product-section
   .choose-product-card
   .choose-product-card-content
@@ -8719,7 +8728,6 @@ header.style-2 .nav-right::after {
  Category on top section
 ........................*/
 .category-on-top-section {
-  background-color: #cee5d2;
   padding: 90px 0;
   position: relative;
 }
