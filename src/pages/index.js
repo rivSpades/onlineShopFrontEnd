@@ -22,7 +22,6 @@ export default function Home({ banners, products }) {
 
       {/* Pass fetched products as props */}
       {products && <NewestProduct products={products} />}
-      <InstagramSection />
     </>
   );
 }

@@ -30,7 +30,7 @@ const ShopPage = () => {
     };
 
     loadProducts();
-    console.log('passa aqui');
+
     console.log(router.query);
   }, [router.query]);
 
@@ -79,7 +79,7 @@ const ShopPage = () => {
   return (
     <>
       <CategoryTop />
-      <div className="filter-dropdown-section mt-110 mb-110">
+      <div className="filter-dropdown-section  mb-110">
         <div className="container-fluid container-xl">
           <div className="shop-columns-title-section mb-40 d-block">
             <Filters query={query} isdropdown={true} />

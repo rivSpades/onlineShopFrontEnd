@@ -7461,7 +7461,7 @@ header.style-2 .nav-right::after {
   Footer Home1 section
 ........................*/
 .footer-section {
-  background-color: #fcf7ee;
+  background-color: 'white';
   position: relative;
 }
 .footer-section .vector1 {
@@ -7498,7 +7498,7 @@ header.style-2 .nav-right::after {
     padding: 70px 0;
   }
 }
-.footer-section .footer-top .footer-widget h3 {
+.footer-widget h3 {
   color: var(--primary-color1);
   font-family: var(--font-Jost);
   font-size: 30px;
@@ -7510,19 +7510,19 @@ header.style-2 .nav-right::after {
   width: 100%;
   margin-bottom: 35px;
 }
-.footer-section .footer-top .footer-widget h3 span {
+.footer-widget h3 span {
   font-size: 25px;
   font-weight: 400;
 }
 @media (max-width: 576px) {
-  .footer-section .footer-top .footer-widget h3 {
+  .footer-widget h3 {
     max-width: unset;
   }
 }
-.footer-section .footer-top .footer-widget .primary-btn1 {
+.footer-widget .primary-btn1 {
   padding: 8px 25px;
 }
-.footer-section .footer-top .footer-widget .widget-title h5 {
+.footer-widget .widget-title h5 {
   color: var(--primary-color1);
   font-family: var(--font-Jost);
   font-size: 22px;
@@ -7532,22 +7532,22 @@ header.style-2 .nav-right::after {
   letter-spacing: 0.66px;
   margin-bottom: 20px;
 }
-.footer-section .footer-top .footer-widget .widget-title.style-2 h5 {
+.footer-widget .widget-title.style-2 h5 {
   margin-bottom: 22px;
 }
-.footer-section .footer-top .footer-widget .widget-list {
+.footer-widget .widget-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.footer-section .footer-top .footer-widget .widget-list li {
+.footer-widget .widget-list li {
   margin-bottom: 10px;
   transition: 0.5s;
 }
-.footer-section .footer-top .footer-widget .widget-list li:last-child {
+.footer-widget .widget-list li:last-child {
   margin-bottom: 0;
 }
-.footer-section .footer-top .footer-widget .widget-list li a {
+.footer-widget .widget-list li a {
   color: rgba(34, 34, 34, 0.6000000238);
   font-family: var(--font-Jost);
   font-size: 16px;
@@ -7557,10 +7557,10 @@ header.style-2 .nav-right::after {
   letter-spacing: 0.32px;
   transition: 0.5s;
 }
-.footer-section .footer-top .footer-widget .widget-list li:hover a {
+.footer-widget .widget-list li:hover a {
   color: var(--primary-color1);
 }
-.footer-section .footer-top .footer-widget p {
+.footer-widget p {
   color: #868686;
   font-family: var(--font-Jost);
   font-size: 15px;
@@ -7569,18 +7569,18 @@ header.style-2 .nav-right::after {
   line-height: 1;
   margin-bottom: 25px;
 }
-.footer-section .footer-top .footer-widget .app-store {
+.footer-widget .app-store {
   display: flex;
   align-items: center;
   gap: 20px;
   margin-bottom: 40px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  .footer-section .footer-top .footer-widget .app-store {
+  .footer-widget .app-store {
     flex-wrap: wrap;
   }
 }
-.footer-section .footer-top .footer-widget .payment-gateway p {
+.payment-gateway p {
   color: var(--primary-color1);
   font-family: var(--font-Jost);
   font-size: 16px;
@@ -7590,20 +7590,19 @@ header.style-2 .nav-right::after {
   letter-spacing: 0.32px;
   margin-bottom: 25px;
 }
-.footer-section .footer-top .footer-widget .payment-gateway .icons {
+.payment-gateway .icons {
   display: flex;
   align-items: center;
   gap: 32px;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  .footer-section .footer-top .footer-widget .payment-gateway .icons {
+  .payment-gateway .icons {
     flex-wrap: wrap;
     gap: 20px;
   }
 }
 .footer-section .footer-bottom {
-  border-top: 1px solid var(--primary-color1);
-  padding: 25px 0;
+  padding: 105px 0;
 }
 .footer-section .footer-bottom .footer-left p {
   color: var(--primary-color1);

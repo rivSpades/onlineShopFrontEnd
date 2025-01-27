@@ -60,7 +60,7 @@ const Filters = ({ isdropdown, query }) => {
         sort: sort || null,
       });
     }
-  }, [router.query]);
+  }, [router.query, mainCategories]);
 
   // Update subcategories when main category is selected
   const handleMainCategoryChange = (mainCategorySlug) => {

@@ -80,7 +80,7 @@ function CategoryTop() {
           slidesPerView: 5,
         },
         1400: {
-          slidesPerView: subcategories.length < 6 ? 2 : 6,
+          slidesPerView: 6,
         },
       },
     };

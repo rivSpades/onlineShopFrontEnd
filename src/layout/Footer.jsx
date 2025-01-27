@@ -20,158 +20,24 @@ const Footer = () => {
         className="vector3"
       />
       <div className="container">
-        <div className="footer-top">
-          <div className="row g-lg-4 gy-5 justify-content-center">
-            <div className="col-lg-3 col-md-4 col-sm-6">
-              <div className="footer-widget">
-                <h3>
-                  Want{' '}
-                  <span>
-                    to Take <br />
-                  </span>{' '}
-                  Beauty Product <span>off our Shop</span>?
-                </h3>
-                <Link legacyBehavior href="/shop">
-                  <a className="primary-btn1 hover-btn3">Shop Now</a>
-                </Link>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-4 col-sm-6 d-flex justify-content-lg-start justify-content-sm-end">
-              <div className="footer-widget">
-                <div className="widget-title">
-                  <h5>Support</h5>
-                </div>
-                <ul className="widget-list">
-                  <li>
-                    <Link legacyBehavior href="/contact">
-                      <a>Help &amp; Contact Us</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <a href="#">Return &amp; Refunds</a>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/shop">
-                      <a>Online Stores</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <a href="#">Privacy Policy</a>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/my-account">
-                      <a>Profile</a>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-4 col-sm-6 d-flex justify-content-lg-center justify-content-md-end">
-              <div className="footer-widget">
-                <div className="widget-title">
-                  <h5>Company</h5>
-                </div>
-                <ul className="widget-list">
-                  <li>
-                    <Link legacyBehavior href="/about-us">
-                      <a>What we do</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/gift-card">
-                      <a>Gift Offers</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/blog-grid">
-                      <a>Latest Posts</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/faq">
-                      <a>F.A.Q</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/our-brand">
-                      <a>Our Brand</a>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-4 col-sm-6 d-flex justify-content-lg-center justify-content-md-start justify-content-sm-end">
-              <div className="footer-widget">
-                <div className="widget-title">
-                  <h5>Category</h5>
-                </div>
-                <ul className="widget-list">
-                  <li>
-                    <Link legacyBehavior href="/shop">
-                      <a>Bath &amp; Body</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/shop">
-                      <a>Skin Care</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/shop">
-                      <a>Hair Care</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/shop">
-                      <a>Kids &amp; Baby</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/shop">
-                      <a>Fragrance</a>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-lg-end justify-content-md-center">
-              <div className="footer-widget">
-                <div className="widget-title style-2">
-                  <h5>Install app</h5>
-                </div>
-                <p>Form App Store or Google Play</p>
-                <div className="app-store">
-                  <a href="#">
-                    <img src="/assets/img/home1/google-play.png" alt="" />
-                  </a>
-                  <a href="#">
-                    <img src="/assets/img/home1/app-store.png" alt="" />
-                  </a>
-                </div>
-                <div className="payment-gateway">
-                  <p>Secured Payment Gateways</p>
-                  <div className="icons">
-                    <img src="/assets/img/home1/icon/visa.png" alt="" />
-                    <img src="/assets/img/home1/icon/mastercard.png" alt="" />
-                    <img
-                      src="/assets/img/home1/icon/american-express.png"
-                      alt=""
-                    />
-                    <img src="/assets/img/home1/icon/maestro.png" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="footer-bottom">
           <div className="row">
             <div className="col-lg-12 d-flex flex-md-row flex-column align-items-center justify-content-md-between justify-content-center flex-wrap gap-3">
-              <div className="footer-left">
-                <p>
-                  ©Copyright 2023 Beautico | Design By{' '}
-                  <a href="https://www.egenslab.com/">Egens Lab</a>
-                </p>
+              <div>
+                <div className="footer-widget">
+                  <div className="payment-gateway">
+                    <p>Secured Payment Gateways</p>
+                    <div className="icons">
+                      <img src="/assets/img/home1/icon/visa.png" alt="" />
+                      <img src="/assets/img/home1/icon/mastercard.png" alt="" />
+                      <img
+                        src="/assets/img/home1/icon/american-express.png"
+                        alt=""
+                      />
+                      <img src="/assets/img/home1/icon/maestro.png" alt="" />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="footer-logo">
                 <Link legacyBehavior href="/">
@@ -198,7 +64,7 @@ const Footer = () => {
                 <div className="content">
                   <p>For Inquiry</p>
                   <h6>
-                    <a href="tel:29658718617">2-965-871-8617</a>
+                    <a href="tel:+351969850699">+351969850699</a>
                   </h6>
                 </div>
               </div>
