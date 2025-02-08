@@ -21,6 +21,11 @@
   --bg-color: #f2f2f2;
 }
 
+#__next {
+  max-width: 1700px;
+  margin: auto;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -889,7 +894,6 @@ input,
 
 .top-bar {
   padding: 18px 0 18px 0;
-  border-bottom: 1px solid var(--primary-color1);
 }
 @media (max-width: 576px) {
   .top-bar {
@@ -925,6 +929,7 @@ input,
     display: none;
   }
 }
+
 .top-bar .search-area {
   max-width: 500px;
   width: 500px;
@@ -3083,7 +3088,7 @@ header
   }
 }
 header.style-2 {
-  padding: 0 7%;
+  padding: 0 2%;
 }
 @media (min-width: 1400px) and (max-width: 1599px) {
   header.style-2 {
@@ -7808,7 +7813,6 @@ header.style-2 .nav-right::after {
  Breadcrumb section
 ........................*/
 .breadcrumb-section {
-  background-color: rgba(34, 34, 34, 0.0500000007);
   padding: 20px 0;
 }
 .breadcrumb-section .breadcrumb {
@@ -13376,7 +13380,24 @@ home2 Banner Css
 }
 .banner-2-section .banner-2-right {
   position: relative;
+  padding: 0 2% 0;
 }
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .banner-2-section .banner-2-right {
+    padding: 0 5%;
+  }
+}
+@media (max-width: 1399px) {
+  .banner-2-section .banner-2-right {
+    padding: 0 2%;
+  }
+}
+@media (max-width: 991px) {
+  .banner-2-section .banner-2-right {
+    padding: 0 0%;
+  }
+}
+
 .banner-2-section .banner-2-right .banner-2-right-img-bg {
   background-size: cover;
   background-repeat: no-repeat;

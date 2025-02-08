@@ -144,7 +144,7 @@ const AuthModal = () => {
                     <div className="form-inner mb-35">
                       <input
                         type="text"
-                        placeholder="User name or Email *"
+                        placeholder="Email"
                         value={loginEmail}
                         onChange={(e) => setLoginEmail(e.target.value)}
                       />
@@ -153,34 +153,27 @@ const AuthModal = () => {
                       <input
                         id="password"
                         type="password"
-                        placeholder="Password *"
+                        placeholder="Password"
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)}
                       />
                       <i className="bi bi-eye-slash" id="togglePassword" />
                     </div>
                     <div>
-                      {errors && <span className="error">{errors.error}</span>}
+                      {errors && (
+                        <span className="error text-danger ">
+                          {errors.error}
+                        </span>
+                      )}
                     </div>
                     <div className="form-remember-forget">
-                      <div className="remember">
-                        <input
-                          type="checkbox"
-                          className="custom-check-box"
-                          id="check1"
-                        />
-                        <label htmlFor="check1">Remember me</label>
-                      </div>
                       <a href="#" className="forget-pass hover-underline">
-                        Forget Password
+                        Forgot your Password?
                       </a>
                     </div>
                     <button type="submit" className="primary-btn1 hover-btn3">
                       Log In
                     </button>
-                    <a href="#" className="member">
-                      Not a member yet?
-                    </a>
                   </form>
                 </div>
               </div>
@@ -198,7 +191,7 @@ const AuthModal = () => {
                     <div className="form-inner mb-25">
                       <input
                         type="text"
-                        placeholder="First Name *"
+                        placeholder="First Name"
                         value={registerFirstName}
                         onChange={(e) => setRegisterFirstName(e.target.value)}
                       />
@@ -211,7 +204,7 @@ const AuthModal = () => {
                     <div className="form-inner mb-25">
                       <input
                         type="text"
-                        placeholder="Last Name *"
+                        placeholder="Last Name"
                         value={registerLastName}
                         onChange={(e) => setRegisterLastName(e.target.value)}
                       />
@@ -224,7 +217,7 @@ const AuthModal = () => {
                     <div className="form-inner mb-25">
                       <input
                         type="text"
-                        placeholder="Phone Number *"
+                        placeholder="Phone Number"
                         value={registerPhoneNumber}
                         onChange={(e) => setRegisterPhoneNumber(e.target.value)}
                       />
@@ -237,7 +230,7 @@ const AuthModal = () => {
                     <div className="form-inner mb-25">
                       <input
                         type="email"
-                        placeholder="Email Here *"
+                        placeholder="Email Here"
                         value={registerEmail}
                         onChange={(e) => setRegisterEmail(e.target.value)}
                       />
@@ -249,7 +242,7 @@ const AuthModal = () => {
                       <input
                         id="password2"
                         type="password"
-                        placeholder="Password *"
+                        placeholder="Password"
                         value={registerPassword}
                         onChange={(e) => setRegisterPassword(e.target.value)}
                       />
@@ -259,7 +252,7 @@ const AuthModal = () => {
                       <input
                         id="password3"
                         type="password"
-                        placeholder="Confirm Password *"
+                        placeholder="Confirm Password"
                         value={registerConfirmPassword}
                         onChange={(e) =>
                           setRegisterConfirmPassword(e.target.value)

@@ -148,7 +148,7 @@ const ExclusiveProduct = () => {
                           <Link legacyBehavior href="/shop">
                             <a>
                               <img
-                                src="/assets/img/home1/loreal-logo.png"
+                                src="/assets/img/home1/loreal-logo.svg"
                                 alt=""
                               />
                             </a>
@@ -261,7 +261,7 @@ const ExclusiveProduct = () => {
                           <Link legacyBehavior href="/shop">
                             <a>
                               <img
-                                src="/assets/img/home1/loreal-logo.png"
+                                src="/assets/img/home1/loreal-logo.svg"
                                 alt=""
                               />
                             </a>
@@ -374,7 +374,7 @@ const ExclusiveProduct = () => {
                           <Link legacyBehavior href="/shop">
                             <a>
                               <img
-                                src="/assets/img/home1/loreal-logo.png"
+                                src="/assets/img/home1/loreal-logo.svg"
                                 alt=""
                               />
                             </a>

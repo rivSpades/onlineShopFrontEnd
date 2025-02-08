@@ -35,7 +35,7 @@ const Banner = ({ banners }) => {
       <div className="container-fluid p-0">
         <div className="row">
           {/* Right Section */}
-          <div className="col-xxl-9 col-xl-8">
+          <div className="col-xxl-12 col-xl-12">
             <div className="banner-2-right">
               <Swiper {...bannerSlideSetting} className="swiper banner2-slider">
                 <div className="swiper-wrapper">

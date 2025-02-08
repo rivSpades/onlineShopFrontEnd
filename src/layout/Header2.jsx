@@ -148,9 +148,11 @@ const Header2 = () => {
     <>
       <header
         ref={headerRef}
-        className={`header-area style-2 ${state.scrollY > 10 ? 'sticky' : ''}`}
+        className={`header-area style-2   ${
+          state.scrollY > 10 ? 'sticky' : ''
+        }`}
       >
-        <div className="container-xxl container-fluid position-relative  d-flex flex-nowrap align-items-center justify-content-between">
+        <div className="container-xxl-12  container-fluid position-relative  d-flex flex-nowrap align-items-center justify-content-between px-0">
           <div className="header-logo d-lg-none d-flex">
             <Link legacyBehavior href="/">
               <a>
