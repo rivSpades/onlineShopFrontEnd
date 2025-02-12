@@ -3,7 +3,7 @@ import { AuthContext } from '../store/authcontext';
 import { login, register } from '../data/auth'; // Adjust the import path
 import { useFeedback } from '../store/feedbackcontext';
 import { useRouter } from 'next/router';
-
+import Link from 'next/link';
 const AuthModal = () => {
   const { setIsLoggedIn } = useContext(AuthContext); // Get setIsLoggedIn from context
 
@@ -84,7 +84,11 @@ const AuthModal = () => {
     }
   };
 
-  console.log(errors);
+  const handleForgotPasswordClick = async () => {
+    // Implement forgot password logic here (you can call the API for password reset)
+    // Once password reset is successful, close the modal
+    document.getElementById('close-modal-button').click();
+  };
 
   return (
     <div
@@ -167,9 +171,14 @@ const AuthModal = () => {
                       )}
                     </div>
                     <div className="form-remember-forget">
-                      <a href="#" className="forget-pass hover-underline">
-                        Forgot your Password?
-                      </a>
+                      <Link legacyBehavior href="/forgot-password">
+                        <a
+                          className="forget-pass hover-underline"
+                          onClick={handleForgotPasswordClick}
+                        >
+                          Forgot your Password?
+                        </a>
+                      </Link>
                     </div>
                     <button type="submit" className="primary-btn1 hover-btn3">
                       Log In

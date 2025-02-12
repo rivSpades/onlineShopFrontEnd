@@ -150,3 +150,47 @@ export const activateAccount = async (uid, token) => {
     throw error; // Handle error response
   }
 };
+
+export const forgotPassword = async (email) => {
+  try {
+    const response = await fetch(`${API_URL}/forgot_password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify({ email: email }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return data;
+    }
+
+    return response; // Handle success response
+  } catch (error) {
+    throw error; // Handle error response
+  }
+};
+
+export const resetPassword = async (password, uid, token) => {
+  try {
+    const response = await fetch(`${API_URL}/reset_password/${uid}/${token}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify({ password: password }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return data;
+    }
+
+    return response; // Handle success response
+  } catch (error) {
+    throw error; // Handle error response
+  }
+};
