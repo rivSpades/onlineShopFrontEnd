@@ -107,7 +107,7 @@ const Header2 = () => {
       // Redirect to /shop with the search keyword as a query parameter
       router.push(`/shop?keyword=${encodeURIComponent(searchTerm)}`);
       setSearchTerm(''); // Clear the input field after submission
-      toggleSidebar();
+      toggleMenu('searchOption');
     }
   };
 
