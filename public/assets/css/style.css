@@ -3151,7 +3151,7 @@ header.style-2 .nav-right .search-area .search-input {
   z-index: 99;
   width: 100%;
   background-color: var(--white-color);
-  padding: 50px;
+  padding: 75px 25px;
   box-shadow: 0px 30px 80px rgba(8, 0, 42, 0.08);
   display: none;
   transform: scaleY(0);
@@ -7594,6 +7594,8 @@ header.style-2 .nav-right::after {
   line-height: 1;
   letter-spacing: 0.32px;
   margin-bottom: 25px;
+  display: flex;
+  justify-content: start;
 }
 .payment-gateway .icons {
   display: flex;
@@ -7604,6 +7606,12 @@ header.style-2 .nav-right::after {
   .payment-gateway .icons {
     flex-wrap: wrap;
     gap: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .payment-gateway p {
+    justify-content: center;
   }
 }
 .footer-section .footer-bottom {
@@ -7817,6 +7825,8 @@ header.style-2 .nav-right::after {
 }
 .breadcrumb-section .breadcrumb {
   margin-bottom: 0;
+  display: flex;
+  justify-content: center;
 }
 .breadcrumb-section .breadcrumb .breadcrumb-item {
   line-height: 1;
@@ -11319,7 +11329,8 @@ header.style-2 .nav-right::after {
   .shop-details-description-tab
   .description-content
   .description-left-content1 {
-  padding-top: 80px;
+  padding-top: 0px;
+  width: 100%;
 }
 @media (max-width: 991px) {
   .shop-details-description

@@ -23,10 +23,10 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="row">
             <div className="col-lg-12 d-flex flex-md-row flex-column align-items-center justify-content-md-between justify-content-center flex-wrap gap-3">
-              <div>
+              <div className="mb-4">
                 <div className="footer-widget">
                   <div className="payment-gateway">
-                    <p>Secured Payment Gateways</p>
+                    <p className="mb-4">Secured Payment Gateways</p>
                     <div className="icons">
                       <img src="/assets/img/home1/icon/visa.png" alt="" />
                       <img src="/assets/img/home1/icon/mastercard.png" alt="" />
@@ -39,13 +39,7 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-              <div className="footer-logo">
-                <Link legacyBehavior href="/">
-                  <a>
-                    <img src="/assets/img/logo.svg" alt="" />
-                  </a>
-                </Link>
-              </div>
+
               <div className="footer-contact">
                 <div className="logo">
                   <svg
